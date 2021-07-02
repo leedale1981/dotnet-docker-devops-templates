@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>0.1.0</PackageVersion>
+    <PackageId>My.Dotnet.Templates</PackageId>
+    <Title>My DotNet Templates</Title>
+    <Authors>Me</Authors>
+    <Description>DotNet Core project templates for creating services.</Description>
+    <PackageTags>dotnet-new;templates;servcies</PackageTags>
+
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>

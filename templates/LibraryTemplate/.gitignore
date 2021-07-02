@@ -1,0 +1,7 @@
+Tests/**/bin/
+Tests/**/obj/
+bin/
+obj/
+packages
+My.Library/appsettings.Development.json
+Tests/My.Libary.Tests/appsettings.Development.json

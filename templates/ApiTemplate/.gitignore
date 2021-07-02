@@ -1,0 +1,6 @@
+Tests/**/bin/
+Tests/**/obj/
+bin/
+obj/
+packages
+My.Web.Api/appsettings.Development.json

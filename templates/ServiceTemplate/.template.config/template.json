@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Me",
+    "classifications": ["Common", "Services"],
+    "identity": "My.Templates.Services",
+    "name": "My DotNet Back-end Service Template",
+    "shortName": "my-service",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    }
+}

@@ -1,0 +1,43 @@
+trigger:
+  - main
+
+variables:
+  buildConfiguration: "Release"
+  version: "0.0.1"
+  suffix: "release"
+
+stages:
+  - stage: BuildPackageAndPush
+    jobs:
+      - job: Build
+        pool:
+          vmImage: "Ubuntu-20.04"
+        continueOnError: "true"
+        steps:
+          - task: Docker@2
+            displayName: Login to GitLab
+            inputs:
+              command: login
+              containerRegistry: GitLabRegistry
+
+          - task: Docker@2
+            displayName: Build
+            inputs:
+              command: build
+              repository: providor/<gitlab-project-name>
+              tags: $(version)-$(suffix)
+              arguments:
+                --build-arg MESSAGING_CONNECTIONSTRING=$(MessagingConnectionString)
+                --build-arg DATABASE_CONNECTIONSTRING=$(DatabaseConnectionString)
+                --build-arg USERNAME=$(PatUsername)
+                --build-arg PAT=$(PAT)
+                --build-arg FEED_URL=$(FeedUrl)
+                --build-arg SHARED_FEED_URL=$(SharedFeedUrl)
+
+          - task: Docker@2
+            displayName: Push
+            inputs:
+              command: push
+              containerRegistry: GitLabRegistry
+              repository: providor/<gitlab-project-name>
+              tags: $(version)-$(suffix)

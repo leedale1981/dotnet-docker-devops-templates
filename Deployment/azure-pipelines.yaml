@@ -1,0 +1,33 @@
+trigger:
+  - main
+
+variables:
+  buildConfiguration: "Debug"
+
+stages:
+  - stage: BuildPackagePush
+    jobs:
+      - job: Build
+        pool:
+          vmImage: "Ubuntu-20.04"
+        continueOnError: "true"
+        steps:
+          - task: DotNetCoreCLI@2
+            displayName: "Pack"
+            inputs:
+              command: "pack"
+              arguments: "--configuration $(buildConfiguration)"
+              packagesToPack: "$(System.DefaultWorkingDirectory)/Templates.csproj;"
+              nobuild: true
+              versioningScheme: "off"
+
+          - task: NuGetCommand@2
+            displayName: "Push"
+            inputs:
+              command: "push"
+              feedsToUse: "config"
+              packagesToPush: "$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg"
+              nuGetFeedType: "internal"
+              publishVstsFeed: "<your private nuget feed>"
+              versioningScheme: "off"
+              allowPackageConflicts: true

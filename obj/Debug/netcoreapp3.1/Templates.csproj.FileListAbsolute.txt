@@ -1,0 +1,10 @@
+D:\src\dotnet-docker-devops-templates\bin\Debug\netcoreapp3.1\Templates.deps.json
+D:\src\dotnet-docker-devops-templates\bin\Debug\netcoreapp3.1\Templates.dll
+D:\src\dotnet-docker-devops-templates\bin\Debug\netcoreapp3.1\Templates.pdb
+D:\src\dotnet-docker-devops-templates\obj\Debug\netcoreapp3.1\Templates.csproj.AssemblyReference.cache
+D:\src\dotnet-docker-devops-templates\obj\Debug\netcoreapp3.1\Templates.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\dotnet-docker-devops-templates\obj\Debug\netcoreapp3.1\Templates.AssemblyInfoInputs.cache
+D:\src\dotnet-docker-devops-templates\obj\Debug\netcoreapp3.1\Templates.AssemblyInfo.cs
+D:\src\dotnet-docker-devops-templates\obj\Debug\netcoreapp3.1\Templates.csproj.CoreCompileInputs.cache
+D:\src\dotnet-docker-devops-templates\obj\Debug\netcoreapp3.1\Templates.dll
+D:\src\dotnet-docker-devops-templates\obj\Debug\netcoreapp3.1\Templates.pdb

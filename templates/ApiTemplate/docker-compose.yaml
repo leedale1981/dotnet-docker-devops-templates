@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./
+      args:
+        DATABASE_CONNECTIONSTRING: ""
+        CLIENT_URI: "https://localhost"
+        AZUREAD_CLIENTID: ""
+        AZUREAD_DOMAIN: ""
+        AZUREAD_INSTANCE: ""
+        AZUREAD_TENANTID: ""
+        USERNAME: ""
+        PAT: ""
+        FEED_URL: ""
+    ports:
+      - 8000:8000
+      - 8001:8001
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: overlay
+  frontend:
+    driver: overlay

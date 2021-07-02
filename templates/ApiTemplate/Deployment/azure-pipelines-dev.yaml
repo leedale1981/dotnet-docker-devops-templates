@@ -1,0 +1,79 @@
+trigger:
+  - dev
+
+variables:
+  buildConfiguration: "Debug"
+  version: "0.0.1"
+  suffix: "dev"
+
+stages:
+  - stage: BuildPackagePush
+    jobs:
+      - job: Build
+        pool:
+          vmImage: "Ubuntu-20.04"
+        continueOnError: "true"
+        steps:
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: restore
+              projects: "$(System.DefaultWorkingDirectory)/**/*.csproj"
+              feedsToUse: "config"
+              nugetConfigPath: 'nuget.dev.config'
+
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+              projects: "$(System.DefaultWorkingDirectory)/**/*.csproj"
+              arguments: "--configuration $(BuildConfiguration)"
+              feedsToUse: "config"
+              nugetConfigPath: 'nuget.dev.config'
+
+          - task: DotNetCoreCLI@2
+            displayName: Test
+            inputs:
+              command: test
+              projects: "$(System.DefaultWorkingDirectory)/**/*.csproj"
+              feedsToUse: "config"
+              nugetConfigPath: 'nuget.dev.config'
+
+  - stage: BuildPackageAndPush
+    jobs:
+      - job: Build
+        pool:
+          vmImage: "Ubuntu-20.04"
+        continueOnError: "true"
+        steps:
+          - task: Docker@2
+            displayName: Login to GitLab
+            inputs:
+              command: login
+              containerRegistry: GitLabRegistry # This refers to a service connection name in DevOps
+
+          - task: Docker@2
+            displayName: Build
+            inputs:
+              command: build
+              repository: <replace with container registry URL>
+              tags: $(version)-$(suffix)
+              arguments:
+                --build-arg DATABASE_CONNECTIONSTRING=$(DatabaseConnectionString)
+                --build-arg LOGGING_DATABASE_CONNECTIONSTRING=$(LoggingDatabaseConnectionString)
+                --build-arg CLIENT_URI=$(ClientUri)
+                --build-arg AZUREAD_CLIENTID=$(AzureAdClientId)
+                --build-arg AZUREAD_DOMAIN=$(AzureAdDomain)
+                --build-arg AZUREAD_INSTANCE=$(AzureAdInstance)
+                --build-arg AZUREAD_TENANTID=$(AzureAdTenantId)
+                --build-arg USERNAME=$(PatUsername)
+                --build-arg PAT=$(PAT)
+                --build-arg FEED_URL=$(FeedUrl)
+                --build-arg SHARED_FEED_URL=$(SharedFeedUrl)
+
+          - task: Docker@2
+            displayName: Push
+            inputs:
+              command: push
+              containerRegistry: GitLabRegistry # This refers to a service connection name in DevOps
+              repository: <replace with container registry URL>
+              tags: $(version)-$(suffix)

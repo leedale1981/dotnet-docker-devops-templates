@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>My.Dotnet.Templates</id>
+    <version>0.1.0</version>
+    <title>My DotNet Templates</title>
+    <authors>Me</authors>
+    <description>DotNet Core project templates for creating services.</description>
+    <tags>dotnet-new templates servcies</tags>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\src\dotnet-docker-devops-templates\templates\ApiTemplate\.template.config\template.json" target="content\templates\ApiTemplate\.template.config\template.json" />
+    <file src="D:\src\dotnet-docker-devops-templates\templates\ApiTemplate\appsettings.json" target="content\templates\ApiTemplate\appsettings.json" />
+    <file src="D:\src\dotnet-docker-devops-templates\templates\ApiTemplate\Deployment\azure-pipelines-dev.yaml" target="content\templates\ApiTemplate\Deployment\azure-pipelines-dev.yaml" />
+    <file src="D:\src\dotnet-docker-devops-templates\templates\ApiTemplate\Deployment\azure-pipelines-prod.yaml" target="content\templates\ApiTemplate\Deployment\azure-pipelines-prod.yaml" />
+    <file src="D:\src\dotnet-docker-devops-templates\templates\ApiTemplate\My.Web.Api.csproj" target="content\templates\ApiTemplate\My.Web.Api.csproj" />
+    <file src="D:\src\dotnet-docker-devops-templates\templates\ApiTemplate\Program.cs" target="content\templates\ApiTemplate\Program.cs" />
+    <file src="D:\src\dotnet-docker-devops-templates\templates\ApiTemplate\Startup.cs" target="content\templates\ApiTemplate\Startup.cs" />
+  </files>
+</package>
